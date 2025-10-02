@@ -24,6 +24,15 @@ const social: { label: string; icon: JSX.Element; href: string }[] = [
     )
   },
   {
+    label: 'TikTok',
+    href: '#',
+    icon: (
+      <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
+        <path d="M13.5 2h3.1c.1 1.2.6 2.2 1.3 3 .8.9 1.8 1.4 3 1.5v3.2c-1.7-.1-3.3-.7-4.5-1.6v6.9a6.9 6.9 0 1 1-6.9-6.9c.3 0 .7 0 1 .1v3.4a3.5 3.5 0 1 0 2.4 3.3L13.5 2Z" />
+      </svg>
+    )
+  },
+  {
     label: 'Facebook',
     href: '#',
     icon: (
@@ -33,20 +42,12 @@ const social: { label: string; icon: JSX.Element; href: string }[] = [
     )
   },
   {
-    label: 'X',
-    href: '#',
+    label: 'Gmail',
+    href: 'mailto:info@bellara.com',
     icon: (
-      <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
-        <path d="M18 2h4l-8.5 9.9L23 22h-7l-5-6.6L5 22H1l9-10.5L2 2h7l4.6 6.1L18 2Z" />
-      </svg>
-    )
-  },
-  {
-    label: 'Pinterest',
-    href: '#',
-    icon: (
-      <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
-        <path d="M12 2C6.5 2 3 6 3 10.5c0 3.1 1.9 5.7 4.6 6.6.2-.6.5-1.6.6-2.2 0-.2.1-.5.3-.7-1-.2-1.8-1.1-1.8-2.4 0-2 1.5-3.8 4-3.8 2.2 0 3.7 1.3 3.7 3.2 0 2.4-1.1 4.4-2.7 4.4-.9 0-1.6-.7-1.4-1.6.3-1.2.9-2.4.9-3.3 0-.8-.5-1.5-1.4-1.5-1.1 0-2 1.2-2 2.8 0 1 .3 1.6.3 1.6s-1 4.2-1.2 5c-.4 1.5-.1 3.4 0 3.6 0 0 .1 0 .1-.1.5-.7 1.9-2.8 2.2-4.1.2-.8.9-2.9.9-2.9.4.7 1.5 1.3 2.6 1.3 3.4 0 5.7-3 5.7-7.1C21 5.6 17.5 2 12 2Z" />
+      <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="4" width="20" height="16" rx="2" ry="2" />
+        <path d="M22 6 12 13 2 6" />
       </svg>
     )
   }
@@ -78,9 +79,73 @@ const Footer: React.FC = () => {
         </div>
       </div>
       {/* Area coklat utama */}
-      <div className="mt-[-120px] pt-[140px] pb-16 bg-[#4e3527] dark:bg-zinc-900 text-white transition-colors">
-        <div className="max-w-[1512px] mx-auto px-6 md:px-12">
-          <div className="grid gap-12 md:gap-10 lg:gap-16 md:grid-cols-12">
+      <div className="mt-[-120px] pt-[120px] pb-12 bg-[#4e3527] dark:bg-zinc-900 text-white transition-colors">
+        <div className="max-w-[1512px] mx-auto px-5 md:px-12">
+          {/* Mobile accordion layout */}
+          <div className="md:hidden">
+            {/* Brand + short tagline */}
+            <div className="flex items-center gap-4 mb-5">
+              <img src={logo} alt="Bellara" className="w-14 h-14 object-contain" />
+              <p className="text-xs leading-snug text-white/75 max-w-[200px]">Curated bags & timeless accessories.</p>
+            </div>
+            <div className="divide-y divide-white/10 border-t border-b border-white/10 text-sm">
+              {/* Menu Section */}
+              <AccordionRow title="Menu">
+                <ul className="grid grid-cols-2 gap-y-2 pt-3 pr-2">
+                  {navLinks.map(l => (
+                    <li key={l.label} className="pr-2">
+                      <a href={l.href} className="hover:text-white/90 transition" aria-label={l.label}>{l.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              </AccordionRow>
+              {/* Social Section */}
+              <AccordionRow title="Social">
+                <div className="flex items-center gap-3 flex-wrap pt-3">
+                  {social.map(s => {
+                    const external = !s.href.startsWith('mailto:');
+                    return (
+                      <a
+                        key={s.label}
+                        href={s.href}
+                        aria-label={s.label}
+                        {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                        className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 hover:bg-white/10 text-white/80 hover:text-white transition border border-white/10"
+                      >
+                        {s.icon}
+                      </a>
+                    );
+                  })}
+                </div>
+              </AccordionRow>
+              {/* Newsletter Section */}
+              <AccordionRow title="Newsletter">
+                <div className="pt-3 space-y-3">
+                  <p className="text-xs text-white/65 leading-relaxed">Get product updates & drops.</p>
+                  <form onSubmit={(e)=>{e.preventDefault();}} className="flex items-center gap-2">
+                    <input type="email" required placeholder="Email" className="flex-1 h-9 rounded-md bg-white/10 placeholder:text-white/40 text-[13px] px-3 outline-none focus:ring-2 focus:ring-white/30" />
+                    <button className="h-9 px-3 rounded-md bg-white text-neutral-900 text-xs font-medium tracking-wide active:scale-[.96]">OK</button>
+                  </form>
+                </div>
+              </AccordionRow>
+            </div>
+            {/* Shipping Row */}
+            <button className="w-full flex items-center justify-between mt-6 py-3 px-1 text-xs tracking-wide border-t border-white/10 text-white/70">
+              <span>Ship to : Indonesia</span>
+              <span className="text-white/60">›</span>
+            </button>
+            {/* Copyright condensed */}
+            <div className="mt-6 flex flex-col items-center gap-2 text-center">
+              <p className="text-[11px] tracking-wide text-white/55">&copy; {new Date().getFullYear()} Bellara</p>
+              <div className="flex gap-4 text-[10px] text-white/55">
+                <a href="#" className="hover:text-white">Privacy</a>
+                <a href="#" className="hover:text-white">Terms</a>
+                <a href="#" className="hover:text-white">Cookies</a>
+              </div>
+            </div>
+          </div>
+          {/* Desktop / tablet grid layout remains original (below) */}
+          <div className="hidden md:grid gap-12 md:gap-10 lg:gap-16 md:grid-cols-12">
             <div className="md:col-span-4 lg:col-span-3">
               <div className="flex items-center gap-3 mb-6">
                 <img src={logo} alt="Bellara" className="w-16 h-16 object-contain" />
@@ -116,18 +181,27 @@ const Footer: React.FC = () => {
               <div>
                 <h3 className="text-xl font-semibold mb-4">Social</h3>
                 <div className="flex items-center gap-5">
-                  {social.map(s => (
-                    <a key={s.label} href={s.href} aria-label={s.label} className="text-white/80 hover:text-white transition">
-                      {s.icon}
-                    </a>
-                  ))}
+                  {social.map(s => {
+                    const external = !s.href.startsWith('mailto:');
+                    return (
+                      <a
+                        key={s.label}
+                        href={s.href}
+                        aria-label={s.label}
+                        {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                        className="text-white/80 hover:text-white transition"
+                      >
+                        {s.icon}
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
             </div>
           </div>
-          <div className="mt-14 pt-6 border-t border-white/10 text-xs text-zinc-300 dark:text-zinc-400 flex flex-col md:flex-row gap-4 md:items-center justify-between transition-colors">
-            <p>&copy; {new Date().getFullYear()} Bellara. All rights reserved.</p>
-            <div className="flex gap-6">
+          <div className="hidden md:flex mt-14 pt-6 border-t border-white/10 text-xs text-zinc-300 dark:text-zinc-400 flex-col md:flex-row gap-6 md:gap-4 md:items-center justify-between transition-colors">
+            <p className="order-2 md:order-1">&copy; {new Date().getFullYear()} Bellara. All rights reserved.</p>
+            <div className="flex gap-6 order-1 md:order-2">
               <a href="#" className="hover:text-white">Privacy</a>
               <a href="#" className="hover:text-white">Terms</a>
               <a href="#" className="hover:text-white">Cookies</a>
@@ -140,3 +214,27 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
+
+// Simple accordion row (mobile only)
+interface AccordionRowProps { title: string; children: React.ReactNode; }
+const AccordionRow: React.FC<AccordionRowProps> = ({ title, children }) => {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <div>
+      <button
+        type="button"
+        onClick={() => setOpen(o=>!o)}
+        className="w-full flex items-center justify-between py-4 text-left font-medium tracking-wide"
+        aria-expanded={open}
+      >
+        <span>{title.toUpperCase()}</span>
+        <span className={`transition-transform ${open ? 'rotate-45' : ''}`}>+</span>
+      </button>
+      <div className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+        <div className="overflow-hidden pb-4">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+};
