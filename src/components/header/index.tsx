@@ -129,7 +129,7 @@ const Header: React.FC<HeaderProps> = ({ sticky = false }) => {
                 </nav>
                 {/* Mobile Theme Toggle */}
                 <div className="mt-6 flex items-center justify-between px-2">
-                  <span className="text-sm font-medium text-neutral-700 dark:text-zinc-300">Theme</span>
+                  <span className="text-sm font-medium text-neutral-700 dark:text-zinc-300"></span>
                   <ThemeToggle />
                 </div>
               </div>
