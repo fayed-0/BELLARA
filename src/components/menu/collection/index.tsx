@@ -4,6 +4,7 @@ import Navbar from '../../navbar';
 import imgBlack from './source/b1/b1-black.png';
 import imgBrown from './source/b1/b1-brown.png';
 import imgCream from './source/b1/b1-cream.png';
+import cartIcon from './source/cart.svg';
 
 // Data for all cards (each card reuses the image variants carousel)
 interface CardData { id: number; title: string; price: number }
@@ -85,18 +86,22 @@ const CarouselCard: React.FC<CarouselCardProps> = ({ title, price }) => {
   };
 
   return (
-    <div className="group relative rounded-[20px] bg-[#FFF3EB] dark:bg-[#FFF3EB]/90 h-[420px] sm:h-[480px] md:h-[513px] p-5 flex flex-col overflow-hidden">
+    <div className="group relative rounded-[20px] bg-[#FFF3EB] dark:bg-[#FFF3EB]/100 h-[420px] sm:h-[480px] md:h-[513px] p-5 flex flex-col overflow-hidden">
       <div className="flex items-start justify-between mb-2">
         <div>
-          <p className="text-sm md:text-base font-medium font-be-vietnam-pro text-neutral-900 dark:text-white">{title}</p>
-          <p className="text-xl md:text-2xl font-semibold font-be-vietnam-pro text-neutral-900 dark:text-white mt-1">${price}</p>
+          <p className="text-sm md:text-base font-medium font-be-vietnam-pro text-neutral-900 dark:text-dark">{title}</p>
+          <p className="text-xl md:text-2xl font-semibold font-be-vietnam-pro text-neutral-900 dark:text-dark mt-1">${price}</p>
         </div>
         <button
           type="button"
-          aria-label="Locked"
-          className="w-7 h-7 rounded-full bg-white dark:bg-zinc-900 flex items-center justify-center shadow-sm border border-neutral-200/60 dark:border-zinc-700"
+          aria-label="Add to cart"
+          className="w-9 h-9 rounded-full flex items-center justify-center shadow-sm transition active:scale-95 hover:shadow"
+          // Hard-coded style so dark mode cannot override
+          style={{ background: '#FFFFFF', border: '1px solid #d4d4d8' }}
+          onClick={() => {/* future cart logic */}}
+          data-theme-fixed="cart"
         >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-neutral-900 dark:text-zinc-200"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <img src={cartIcon} alt="Cart" className="w-7 h-7" style={{ filter: 'none' }} />
         </button>
       </div>
       <div
@@ -129,17 +134,17 @@ const CarouselCard: React.FC<CarouselCardProps> = ({ title, price }) => {
           </div>
         </div>
         {/* Arrows (desktop/tablet) */}
-        <button onClick={()=>go(-1)} aria-label="Previous image" className="opacity-0 group-hover:opacity-100 focus:opacity-100 focus-visible:opacity-100 transition-opacity duration-200 hidden sm:flex absolute left-2 top-1/2 -translate-y-1/2 px-1 text-neutral-900 dark:text-white/90 hover:text-neutral-700 dark:hover:text-white">
+        <button onClick={()=>go(-1)} aria-label="Previous image" className="opacity-0 group-hover:opacity-100 focus:opacity-100 focus-visible:opacity-100 transition-opacity duration-200 hidden sm:flex absolute left-2 top-1/2 -translate-y-1/2 px-1 text-black hover:text-black">
           <span className="text-2xl leading-none select-none">‹</span>
         </button>
-        <button onClick={()=>go(1)} aria-label="Next image" className="opacity-0 group-hover:opacity-100 focus:opacity-100 focus-visible:opacity-100 transition-opacity duration-200 hidden sm:flex absolute right-2 top-1/2 -translate-y-1/2 px-1 text-neutral-900 dark:text-white/90 hover:text-neutral-700 dark:hover:text-white">
+        <button onClick={()=>go(1)} aria-label="Next image" className="opacity-0 group-hover:opacity-100 focus:opacity-100 focus-visible:opacity-100 transition-opacity duration-200 hidden sm:flex absolute right-2 top-1/2 -translate-y-1/2 px-1 text-black hover:text-black">
           <span className="text-2xl leading-none select-none">›</span>
         </button>
         {/* Progress indicator (hover only) */}
         <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute bottom-5 left-1/2 -translate-x-1/2 w-28 max-w-[60%]">
-          <div className="relative h-[2px] bg-neutral-300/80 dark:bg-white/30 rounded overflow-hidden">
+          <div className="relative h-[2px] bg-black/30 rounded overflow-hidden">
             <span
-              className="absolute top-0 h-full bg-neutral-900 dark:bg-white rounded transition-all duration-400 ease-out"
+              className="absolute top-0 h-full bg-black rounded transition-all duration-400 ease-out"
               style={{ width: `${100 / SLIDER_IMAGES.length}%`, left: `${(100 / SLIDER_IMAGES.length) * logicalIndex}%` }}
             />
           </div>
