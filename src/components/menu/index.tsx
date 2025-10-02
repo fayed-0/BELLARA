@@ -18,7 +18,7 @@ const cards = [
 
 const Menu: React.FC = () => {
   return (
-    <section className="w-full font-inter bg-orange-50 dark:bg-zinc-900 py-10 md:py-20 transition-colors">
+    <section className="w-full font-inter bg-white dark:bg-zinc-900 py-10 md:py-20 transition-colors">
       {/* Wrapper lebar desain 1512px */}
       <div className="max-w-[1512px] mx-auto px-4 md:px-8">
         {/* Heading block */}
