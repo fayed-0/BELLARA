@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import trandingImg from './source/tranding.png';
 import partnershipImg from './source/partnership.png';
 import collectionsImg from './source/collections.png';
@@ -17,6 +18,7 @@ const cards = [
 ];
 
 const Menu: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <section className="w-full font-inter bg-white dark:bg-zinc-900 py-10 md:py-20 transition-colors">
       {/* Wrapper lebar desain 1512px */}
@@ -27,7 +29,11 @@ const Menu: React.FC = () => {
           <p className="body-text text-black dark:text-zinc-300 font-normal transition-colors">{MOCK_SUB}</p>
         </div>
   <div className="mx-auto max-w-[1272px] grid grid-cols-12 gap-4 md:gap-10">
-          <Card {...cards[0]} className="col-span-7 md:col-span-7" />
+          <Card
+            {...cards[0]}
+            className="col-span-7 md:col-span-7"
+            onClick={() => navigate('/collection')}
+          />
           <Card {...cards[1]} className="col-span-5 md:col-span-5" />
           <Card {...cards[2]} className="col-span-5 md:col-span-5" />
           <Card {...cards[3]} className="col-span-7 md:col-span-7" />
