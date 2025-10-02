@@ -10,7 +10,7 @@ interface HeaderProps { sticky?: boolean; }
 const navLinks: NavLink[] = [
   { label: 'Collections', href: '/collection' },
   { label: 'Trending', href: '#' },
-  { label: 'Accessories', href: '#' },
+  { label: 'Accessories', href: '/accessories' },
   { label: 'Partnership', href: '#' },
 ];
 

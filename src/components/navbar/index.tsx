@@ -7,7 +7,7 @@ interface NavItem { label: string; to: string; }
 const navItems: NavItem[] = [
 	{ label: 'Collections', to: '/collection' },
 	{ label: 'Trending', to: '#' },
-	{ label: 'Accessories', to: '#' },
+	{ label: 'Accessories', to: '/accessories' },
 	{ label: 'Partnership', to: '#' },
 ];
 

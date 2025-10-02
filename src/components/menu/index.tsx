@@ -35,7 +35,7 @@ const Menu: React.FC = () => {
             onClick={() => navigate('/collection')}
           />
           <Card {...cards[1]} className="col-span-5 md:col-span-5" />
-          <Card {...cards[2]} className="col-span-5 md:col-span-5" />
+          <Card {...cards[2]} className="col-span-5 md:col-span-5" onClick={() => navigate('/accessories')} />
           <Card {...cards[3]} className="col-span-7 md:col-span-7" />
         </div>
       </div>
