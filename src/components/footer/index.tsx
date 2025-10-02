@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../header/source/img1.png';
 import footerBg from './source/footer.png';
 
 interface FooterLink { label: string; href: string; }
 
 const navLinks: FooterLink[] = [
-  { label: 'Collections', href: '#' },
+  { label: 'Collections', href: '/collection' },
   { label: 'Tranding', href: '#' },
   { label: 'Accessories', href: '#' },
   { label: 'Partnership', href: '#' },
@@ -59,7 +60,7 @@ const Footer: React.FC = () => {
       {/* Panel atas abu-abu dengan logo */}
       <div className="mx-auto max-w-[1680px] px-4 sm:px-6 lg:px-10 xl:px-20">
         <div
-          className="relative bg-zinc-200 dark:bg-zinc-800 rounded-[20px] mt-8 md:mt-14 h-[360px] md:h-[420px] flex items-center justify-center overflow-hidden transition-colors"
+          className="relative bg-zinc-200 dark:bg-zinc-950 rounded-[20px] mt-8 md:mt-14 h-[360px] md:h-[420px] flex items-center justify-center overflow-hidden transition-colors"
           style={{
             backgroundImage: `url(${footerBg})`,
             backgroundSize: 'cover',
@@ -79,7 +80,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
       {/* Area coklat utama */}
-      <div className="mt-[-120px] pt-[120px] pb-12 bg-[#4e3527] dark:bg-zinc-900 text-white transition-colors">
+      <div className="mt-[-120px] pt-[120px] pb-12 bg-[#4e3527] dark:bg-zinc-950 text-white transition-colors">
         <div className="max-w-[1512px] mx-auto px-5 md:px-12">
           {/* Mobile accordion layout */}
           <div className="md:hidden">
@@ -94,7 +95,11 @@ const Footer: React.FC = () => {
                 <ul className="grid grid-cols-2 gap-y-2 pt-3 pr-2">
                   {navLinks.map(l => (
                     <li key={l.label} className="pr-2">
-                      <a href={l.href} className="hover:text-white/90 transition" aria-label={l.label}>{l.label}</a>
+                      {l.href.startsWith('/') ? (
+                        <Link to={l.href} className="hover:text-white/90 transition" aria-label={l.label}>{l.label}</Link>
+                      ) : (
+                        <a href={l.href} className="hover:text-white/90 transition" aria-label={l.label}>{l.label}</a>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -165,7 +170,11 @@ const Footer: React.FC = () => {
                 <ul className="grid gap-3 text-sm font-be-vietnam-pro">
                   {navLinks.map(l => (
                     <li key={l.label}>
-                      <a href={l.href} className="hover:text-white transition text-white/75" aria-label={l.label}>{l.label}</a>
+                      {l.href.startsWith('/') ? (
+                        <Link to={l.href} className="hover:text-white transition text-white/75" aria-label={l.label}>{l.label}</Link>
+                      ) : (
+                        <a href={l.href} className="hover:text-white transition text-white/75" aria-label={l.label}>{l.label}</a>
+                      )}
                     </li>
                   ))}
                 </ul>

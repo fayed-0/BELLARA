@@ -27,7 +27,7 @@ const SUB = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhonc
 const Testimonial: React.FC = () => {
   const { carouselRef, handleScroll, activeIndex, scrollToIndex, showHint } = useCarouselProgress();
   return (
-    <section className="w-full font-inter bg-white dark:bg-zinc-950 py-16 md:py-24 transition-colors">
+    <section className="w-full font-inter bg-white dark:bg-zinc-900 py-16 md:py-24 transition-colors">
       <div className="max-w-[1512px] mx-auto px-4 md:px-8">
         {/* Heading */}
         <div className="mx-auto text-center max-w-[834px] mb-16 md:mb-24">

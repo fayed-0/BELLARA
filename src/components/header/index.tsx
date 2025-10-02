@@ -1,5 +1,6 @@
 // Clean implementation only
 import React, { useState, useId } from 'react';
+import { Link } from 'react-router-dom';
 import heroBg from './source/background.jpeg';
 import ThemeToggle from './ThemeToggle';
 
@@ -7,7 +8,7 @@ interface NavLink { label: string; href: string; }
 interface HeaderProps { sticky?: boolean; }
 
 const navLinks: NavLink[] = [
-  { label: 'Collections', href: '#' },
+  { label: 'Collections', href: '/collection' },
   { label: 'Trending', href: '#' },
   { label: 'Accessories', href: '#' },
   { label: 'Partnership', href: '#' },
@@ -34,7 +35,7 @@ const Header: React.FC<HeaderProps> = ({ sticky = false }) => {
           {/* Overlay untuk memastikan teks tetap terbaca (adjusted dark opacity) */}
           <div className="absolute inset-0 bg-white/15 dark:bg-black/20 pointer-events-none" aria-hidden />
           <div className="relative px-4 sm:px-6 lg:px-10 xl:px-16 pt-4 md:pt-6 flex items-center gap-3">
-                        <a href="#" className="flex items-center gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-800 dark:focus-visible:ring-white rounded-xl">
+                        <Link to="/" className="flex items-center gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-800 dark:focus-visible:ring-white rounded-xl">
                           <img
                             className="w-24 sm:w-24 h-12 sm:h-14 object-contain -md  p-1 group-hover:scale-[1.02] transition"
                             src={require('./source/img1.png')}
@@ -43,16 +44,26 @@ const Header: React.FC<HeaderProps> = ({ sticky = false }) => {
                             decoding="async"
                           />
                           <span className="sr-only">Bellara Home</span>
-                        </a>
+                        </Link>
             <nav className="hidden lg:flex items-center gap-6 xl:gap-12 ml-4" aria-label="Primary">
               {navLinks.map(link => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="relative font-be-vietnam-pro text-[15px] xl:text-lg font-medium text-neutral-700/90 dark:text-zinc-300 tracking-wide focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-800 dark:focus-visible:ring-white rounded-md py-2 px-1 before:absolute before:bottom-1 before:left-1/2 before:-translate-x-1/2 before:w-0 before:h-[2px] before:bg-neutral-800 dark:before:bg-white before:transition-all hover:text-neutral-900 dark:hover:text-white hover:before:w-8"
-                >
-                  {link.label}
-                </a>
+                link.href.startsWith('/') ? (
+                  <Link
+                    key={link.label}
+                    to={link.href}
+                    className="relative font-be-vietnam-pro text-[15px] xl:text-lg font-medium text-neutral-700/90 dark:text-zinc-300 tracking-wide focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-800 dark:focus-visible:ring-white rounded-md py-2 px-1 before:absolute before:bottom-1 before:left-1/2 before:-translate-x-1/2 before:w-0 before:h-[2px] before:bg-neutral-800 dark:before:bg-white before:transition-all hover:text-neutral-900 dark:hover:text-white hover:before:w-8"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="relative font-be-vietnam-pro text-[15px] xl:text-lg font-medium text-neutral-700/90 dark:text-zinc-300 tracking-wide focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-800 dark:focus-visible:ring-white rounded-md py-2 px-1 before:absolute before:bottom-1 before:left-1/2 before:-translate-x-1/2 before:w-0 before:h-[2px] before:bg-neutral-800 dark:before:bg-white before:transition-all hover:text-neutral-900 dark:hover:text-white hover:before:w-8"
+                  >
+                    {link.label}
+                  </a>
+                )
               ))}
             </nav>
             <form
@@ -116,15 +127,27 @@ const Header: React.FC<HeaderProps> = ({ sticky = false }) => {
                 </form>
                 <nav aria-label="Mobile Primary" className="flex flex-col gap-2">
                   {navLinks.map(link => (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      onClick={()=>setMenuOpen(false)}
-                      className="group relative px-5 py-3 rounded-xl bg-white/70 dark:bg-zinc-800/70 hover:bg-white/90 dark:hover:bg-zinc-700 active:scale-[.98] font-be-vietnam-pro font-medium text-[15px] text-neutral-800 dark:text-zinc-200 shadow-sm backdrop-blur border border-zinc-200 dark:border-zinc-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-800 dark:focus-visible:ring-white transition"
-                    >
-                      {link.label}
-                      <span className="absolute inset-y-0 right-4 m-auto w-0.5 h-0.5 rounded-full bg-neutral-400 dark:bg-zinc-500 group-hover:scale-150 transition-transform" />
-                    </a>
+                    link.href.startsWith('/') ? (
+                      <Link
+                        key={link.label}
+                        to={link.href}
+                        onClick={()=>setMenuOpen(false)}
+                        className="group relative px-5 py-3 rounded-xl bg-white/70 dark:bg-zinc-800/70 hover:bg-white/90 dark:hover:bg-zinc-700 active:scale-[.98] font-be-vietnam-pro font-medium text-[15px] text-neutral-800 dark:text-zinc-200 shadow-sm backdrop-blur border border-zinc-200 dark:border-zinc-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-800 dark:focus-visible:ring-white transition"
+                      >
+                        {link.label}
+                        <span className="absolute inset-y-0 right-4 m-auto w-0.5 h-0.5 rounded-full bg-neutral-400 dark:bg-zinc-500 group-hover:scale-150 transition-transform" />
+                      </Link>
+                    ) : (
+                      <a
+                        key={link.label}
+                        href={link.href}
+                        onClick={()=>setMenuOpen(false)}
+                        className="group relative px-5 py-3 rounded-xl bg-white/70 dark:bg-zinc-800/70 hover:bg-white/90 dark:hover:bg-zinc-700 active:scale-[.98] font-be-vietnam-pro font-medium text-[15px] text-neutral-800 dark:text-zinc-200 shadow-sm backdrop-blur border border-zinc-200 dark:border-zinc-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-800 dark:focus-visible:ring-white transition"
+                      >
+                        {link.label}
+                        <span className="absolute inset-y-0 right-4 m-auto w-0.5 h-0.5 rounded-full bg-neutral-400 dark:bg-zinc-500 group-hover:scale-150 transition-transform" />
+                      </a>
+                    )
                   ))}
                 </nav>
                 {/* Mobile Theme Toggle */}

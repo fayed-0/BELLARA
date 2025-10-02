@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Footer from '../../footer';
-import Navbar from '../../navbar';
 import imgBlack from './source/b1/b1-black.png';
 import imgBrown from './source/b1/b1-brown.png';
 import imgCream from './source/b1/b1-cream.png';
@@ -8,7 +7,8 @@ import cartIcon from './source/cart.svg';
 
 // Data for all cards (each card reuses the image variants carousel)
 interface CardData { id: number; title: string; price: number }
-const CARDS: CardData[] = Array.from({ length: 6 }).map((_, i) => ({ id: i + 1, title: 'B1 Series', price: 54 }));
+  const CARDS: CardData[] = Array.from({ length: 6 }).map((_, i) => ({ id: i + 1, title: 'B1 Series', price: 75000 }));
+  const formatIDR = (value: number) => new Intl.NumberFormat('id-ID').format(value);
 
 interface SliderImage { src: string; alt: string }
 const SLIDER_IMAGES: SliderImage[] = [
@@ -86,11 +86,11 @@ const CarouselCard: React.FC<CarouselCardProps> = ({ title, price }) => {
   };
 
   return (
-    <div className="group relative rounded-[20px] bg-[#FFF3EB] dark:bg-[#FFF3EB]/100 h-[420px] sm:h-[480px] md:h-[513px] p-5 flex flex-col overflow-hidden">
+    <div className="group relative rounded-[20px] bg-[#e2d3ba] dark:bg-[#e2d3ba]/100 h-[420px] sm:h-[480px] md:h-[513px] p-5 flex flex-col overflow-hidden">
       <div className="flex items-start justify-between mb-2">
         <div>
           <p className="text-sm md:text-base font-medium font-be-vietnam-pro text-neutral-900 dark:text-dark">{title}</p>
-          <p className="text-xl md:text-2xl font-semibold font-be-vietnam-pro text-neutral-900 dark:text-dark mt-1">${price}</p>
+          <p className="text-xl md:text-2xl font-semibold font-be-vietnam-pro text-neutral-900 dark:text-dark mt-1">Rp {formatIDR(price)}</p>
         </div>
         <button
           type="button"
@@ -105,7 +105,7 @@ const CarouselCard: React.FC<CarouselCardProps> = ({ title, price }) => {
         </button>
       </div>
       <div
-        className="relative mt-4 rounded-[20px] bg-[#FFF3EB] flex-1 overflow-hidden"
+        className="relative mt-4 rounded-[20px] bg-[##e2d3ba] flex-1 overflow-hidden"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
@@ -156,9 +156,8 @@ const CarouselCard: React.FC<CarouselCardProps> = ({ title, price }) => {
 
 const Collection: React.FC = () => {
 	return (
-		<div className="font-inter flex flex-col min-h-screen bg-white dark:bg-zinc-950 transition-colors">
-			<Navbar />
-			<main className="flex-1">
+    <div className="font-inter flex flex-col min-h-screen bg-white dark:bg-zinc-950 transition-colors">
+      <main className="flex-1">
 				<section id="collection" className="max-w-[1512px] mx-auto px-6 md:px-12 pt-10 md:pt-14 pb-16">
 					<h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-black dark:text-white mb-10 md:mb-14">Lorem ipsum dolor sit amet.</h1>
           <div className="grid gap-10 md:gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
