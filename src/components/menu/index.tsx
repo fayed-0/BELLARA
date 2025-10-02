@@ -26,7 +26,7 @@ const Menu: React.FC = () => {
           <h2 className="heading-2 text-black dark:text-white mb-6 transition-colors">{MOCK_HEADING}</h2>
           <p className="body-text text-black dark:text-zinc-300 font-normal transition-colors">{MOCK_SUB}</p>
         </div>
-        <div className="mx-auto max-w-[1272px] grid grid-cols-12 gap-6 md:gap-10">
+  <div className="mx-auto max-w-[1272px] grid grid-cols-12 gap-4 md:gap-10">
           <Card {...cards[0]} className="col-span-7 md:col-span-7" />
           <Card {...cards[1]} className="col-span-5 md:col-span-5" />
           <Card {...cards[2]} className="col-span-5 md:col-span-5" />
