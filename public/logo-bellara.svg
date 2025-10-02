@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Simplified vector approximation of provided logo (stylized sprout + text) -->
+  <rect width="512" height="512" fill="transparent"/>
+  <g fill="#6E4A33">
+    <path d="M256 250c-14-20-30-52-30-82 0-28 16-54 30-66 14 12 30 38 30 66 0 30-16 62-30 82z"/>
+    <path d="M210 300c-18-10-46-34-58-62-11-25-6-55 3-69 19 5 47 22 61 48 13 24 13 56 11 83z"/>
+    <path d="M302 300c18-10 46-34 58-62 11-25 6-55-3-69-19 5-47 22-61 48-13 24-13 56-11 83z"/>
+    <path d="M248 304h16v70c0 8-8 14-16 14s-16-6-16-14v-70z"/>
+  </g>
+  <text x="256" y="450" text-anchor="middle" font-family="'Times New Roman', serif" font-size="120" font-weight="600" fill="#6E4A33" letter-spacing="12">BELLARA</text>
+</svg>

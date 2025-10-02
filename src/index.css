@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	/* Global responsive typography based on updated spec */
+	/* Mobile <768 | Tablet >=768 <1024 | Desktop >=1024 */
+	h1 { @apply font-inter font-semibold leading-tight tracking-tight text-[28px] md:text-[36px] lg:text-[40px]; }
+	h2 { @apply font-inter font-semibold leading-snug tracking-tight text-[20px] md:text-[28px] lg:text-[32px]; }
+	/* H3 only defined for tablet (22px); assume desktop slight increase 24px, mobile 18px */
+	h3 { @apply font-inter font-semibold leading-snug tracking-tight text-[18px] md:text-[22px] lg:text-[24px]; }
+	p  { @apply font-inter leading-relaxed text-[16px] md:text-[16px] lg:text-[18px]; }
+}
+
+@layer components {
+	.panel-surface {
+		@apply relative rounded-[34px] md:rounded-[40px] border border-zinc-200/60 bg-gradient-to-br from-zinc-200 via-zinc-100 to-zinc-200/90 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.08)] dark:from-zinc-800 dark:via-zinc-900 dark:to-zinc-800/90 dark:border-zinc-700/60 dark:shadow-[0_4px_24px_-4px_rgba(0,0,0,0.45)];
+	}
+
+	/* Responsive Typography Utilities (Updated Spec)
+	 Mobile (<768): H1 28px H2 20px Body 16px
+	 Tablet (>=768 <1024): H1 36px H2 28px H3 22px Body 16px
+	 Desktop (>=1024): H1 40px H2 32px H3 24px Body 18px */
+	.heading-1 { @apply font-inter font-semibold leading-tight tracking-tight text-[28px] md:text-[36px] lg:text-[40px]; }
+	.heading-2 { @apply font-inter font-semibold leading-snug tracking-tight text-[20px] md:text-[28px] lg:text-[32px]; }
+	.heading-3 { @apply font-inter font-semibold leading-snug tracking-tight text-[18px] md:text-[22px] lg:text-[24px]; }
+	.body-text { @apply font-inter leading-relaxed text-[16px] md:text-[16px] lg:text-[18px]; }
+	.btn-primary {
+		@apply relative inline-flex items-center justify-center gap-2 px-9 h-12 rounded-full bg-neutral-900 text-white font-inter font-semibold text-sm tracking-wide shadow-sm hover:shadow-md hover:bg-neutral-800 active:scale-[.97] focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-800 transition dark:bg-white dark:text-neutral-900 dark:hover:bg-zinc-100 dark:focus-visible:ring-white;
+	}
+	.btn-primary-gradient:hover .btn-primary__gradient, .btn-primary:hover .btn-primary__gradient {
+		@apply opacity-100;
+	}
+	.btn-primary__gradient {
+		@apply absolute inset-0 rounded-full bg-gradient-to-r from-neutral-700 via-neutral-900 to-neutral-700 opacity-0 transition dark:from-zinc-200 dark:via-white dark:to-zinc-200;
+	}
+	.badge-pill {
+		@apply inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] tracking-wide uppercase font-medium bg-neutral-900 text-white shadow-sm dark:bg-white dark:text-neutral-900;
+	}
+	.focus-outline {
+		@apply focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-800 dark:focus-visible:ring-white;
+	}
+}
+
+@layer utilities {
+	.anim-scale-in { @apply motion-safe:animate-[scaleIn_.4s_ease]; }
+}
+
+@keyframes scaleIn {
+	0% { opacity:0; transform:scale(.96); }
+	100% { opacity:1; transform:scale(1); }
+}
