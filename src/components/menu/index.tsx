@@ -37,7 +37,7 @@ const Menu: React.FC = () => {
   );
 };
 
-interface CardProps { title: string; desc: string; wide?: boolean; className?: string; }
+interface CardProps { title: string; desc: string; wide?: boolean; className?: string; onClick?: () => void; }
 const imageMap: Record<string,string> = {
   collections: collectionsImg,
   tranding: trandingImg,
@@ -45,28 +45,37 @@ const imageMap: Record<string,string> = {
   partnership: partnershipImg,
 };
 
-const Card: React.FC<CardProps> = ({ title, desc, className = '' }) => {
+const Card: React.FC<CardProps> = ({ title, desc, className = '', onClick }) => {
   const key = title.toLowerCase();
   const bg = imageMap[key];
   const hasImage = Boolean(bg);
   return (
-    <div
-      className={`relative h-60 sm:h-64 md:h-72 xl:h-80 rounded-[20px] overflow-hidden flex flex-col justify-end p-5 sm:p-6 md:p-8 xl:p-10 transition-colors ${hasImage ? '' : 'bg-zinc-500 dark:bg-zinc-700'} ${className}`}
-      style={hasImage ? {
-        backgroundImage: `url(${bg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      } : undefined}
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={title}
+      className={`group relative h-60 sm:h-64 md:h-72 xl:h-80 rounded-[20px] overflow-hidden flex flex-col justify-end p-5 sm:p-6 md:p-8 xl:p-10 transition-colors text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black dark:focus-visible:ring-offset-zinc-900 cursor-pointer ${hasImage ? '' : 'bg-zinc-500 dark:bg-zinc-700'} ${className}`}
     >
       {hasImage && (
-        <div className="absolute inset-0 bg-black/15 dark:bg-black/20" aria-hidden />
+        <>
+          <div
+            className="absolute inset-0 scale-100 group-hover:scale-105 transition-transform duration-500 ease-out"
+            style={{
+              backgroundImage: `url(${bg})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+            aria-hidden
+          />
+          <div className="absolute inset-0 bg-black/15 dark:bg-black/20 group-hover:bg-black/25 dark:group-hover:bg-black/30 transition-colors" aria-hidden />
+        </>
       )}
       <div className="relative max-w-[600px]">
         <h3 className="heading-3 text-white font-be-vietnam-pro font-medium mb-3 tracking-tight">{title}</h3>
         <p className="body-text text-white/90 font-be-vietnam-pro leading-relaxed hidden md:block">{desc}</p>
       </div>
-    </div>
+    </button>
   );
 };
 

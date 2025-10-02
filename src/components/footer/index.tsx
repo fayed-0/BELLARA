@@ -144,43 +144,36 @@ const Footer: React.FC = () => {
               </div>
             </div>
           </div>
-          {/* Desktop / tablet grid layout remains original (below) */}
-          <div className="hidden md:grid gap-12 md:gap-10 lg:gap-16 md:grid-cols-12">
-            <div className="md:col-span-4 lg:col-span-3">
-              <div className="flex items-center gap-3 mb-6">
-                <img src={logo} alt="Bellara" className="w-16 h-16 object-contain" />
+          {/* Desktop / tablet minimalist layout (mirroring mobile sections without accordion) */}
+          <div className="hidden md:block">
+            <div className="grid grid-cols-12 gap-12 lg:gap-16 mt-10">
+              {/* Brand + tagline */}
+              <div className="col-span-4 lg:col-span-3 flex flex-col gap-6">
+                <div className="flex items-center gap-4">
+                  <img src={logo} alt="Bellara" className="w-16 h-16 object-contain" />
+                  <p className="text-xs leading-snug text-white/75 max-w-[160px]">Curated bags & timeless accessories.</p>
+                </div>
+                {/* Shipping pill */}
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[12px] tracking-wide text-white/80 w-fit">
+                  <span className="font-medium">Ship to:</span>
+                  <span className="text-white/90">Indonesia</span>
+                </div>
               </div>
-              <p className="text-sm leading-relaxed text-zinc-200/90 dark:text-zinc-300/90 max-w-xs transition-colors">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus ipsum in eros vestibulum, nec tincidunt elit cursus. Quisque dapibus, nisi id auctor pulvinar, ex est bibendum justo.
-              </p>
-            </div>
-            {/* Home links */}
-            <div className="md:col-span-2 lg:col-span-2">
-              <h3 className="text-xl font-semibold mb-5">Home</h3>
-              <ul className="space-y-3 text-sm font-be-vietnam-pro">
-                {navLinks.map(l => (
-                  <li key={l.label}>
-                    <a href={l.href} className="hover:text-white/90 dark:hover:text-white transition" aria-label={l.label}>{l.label}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            {/* Address */}
-            <div className="md:col-span-3 lg:col-span-3">
-              <h3 className="text-xl font-semibold mb-5">Address</h3>
-              <p className="text-sm font-be-vietnam-pro leading-relaxed max-w-xs text-zinc-200/90 dark:text-zinc-300/90 transition-colors">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus ipsum in eros vestibulum, nec tincidunt elit cursus.
-              </p>
-            </div>
-            {/* Contact & Social */}
-            <div className="md:col-span-3 lg:col-span-4 flex flex-col gap-10">
-              <div>
-                <h3 className="text-xl font-semibold mb-3">Contact</h3>
-                <p className="text-sm font-be-vietnam-pro">(021) 22228000</p>
+              {/* Menu */}
+              <div className="col-span-2 lg:col-span-2 order-2">
+                <h3 className="text-sm font-semibold tracking-wide mb-5 text-white/90">MENU</h3>
+                <ul className="grid gap-3 text-sm font-be-vietnam-pro">
+                  {navLinks.map(l => (
+                    <li key={l.label}>
+                      <a href={l.href} className="hover:text-white transition text-white/75" aria-label={l.label}>{l.label}</a>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Social</h3>
-                <div className="flex items-center gap-5">
+              {/* Social */}
+              <div className="col-span-3 lg:col-span-4 flex flex-col gap-5 order-3">
+                <h3 className="text-sm font-semibold tracking-wide text-white/90">SOCIAL</h3>
+                <div className="flex items-center gap-4 flex-wrap">
                   {social.map(s => {
                     const external = !s.href.startsWith('mailto:');
                     return (
@@ -189,7 +182,7 @@ const Footer: React.FC = () => {
                         href={s.href}
                         aria-label={s.label}
                         {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                        className="text-white/80 hover:text-white transition"
+                        className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 hover:bg-white/10 text-white/80 hover:text-white transition border border-white/10"
                       >
                         {s.icon}
                       </a>
@@ -197,14 +190,24 @@ const Footer: React.FC = () => {
                   })}
                 </div>
               </div>
+              {/* Newsletter (moved to far right) */}
+              <div className="col-span-3 lg:col-span-3 flex flex-col gap-5 order-4">
+                <h3 className="text-sm font-semibold tracking-wide text-white/90">NEWSLETTER</h3>
+                <p className="text-xs text-white/60 leading-relaxed max-w-xs">Get product updates & new drops directly to your inbox.</p>
+                <form onSubmit={(e)=>{e.preventDefault();}} className="flex items-center gap-2 w-full max-w-xs">
+                  <input type="email" required placeholder="Email" className="flex-1 h-10 rounded-md bg-white/10 placeholder:text-white/40 text-[13px] px-3 outline-none focus:ring-2 focus:ring-white/30" />
+                  <button className="h-10 px-4 rounded-md bg-white text-neutral-900 text-xs font-medium tracking-wide active:scale-[.96]">JOIN</button>
+                </form>
+              </div>
             </div>
-          </div>
-          <div className="hidden md:flex mt-14 pt-6 border-t border-white/10 text-xs text-zinc-300 dark:text-zinc-400 flex-col md:flex-row gap-6 md:gap-4 md:items-center justify-between transition-colors">
-            <p className="order-2 md:order-1">&copy; {new Date().getFullYear()} Bellara. All rights reserved.</p>
-            <div className="flex gap-6 order-1 md:order-2">
-              <a href="#" className="hover:text-white">Privacy</a>
-              <a href="#" className="hover:text-white">Terms</a>
-              <a href="#" className="hover:text-white">Cookies</a>
+            {/* Divider + legal */}
+            <div className="mt-14 pt-6 border-t border-white/10 text-[11px] text-white/55 flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
+              <p className="tracking-wide">&copy; {new Date().getFullYear()} Bellara</p>
+              <div className="flex gap-6">
+                <a href="#" className="hover:text-white">Privacy</a>
+                <a href="#" className="hover:text-white">Terms</a>
+                <a href="#" className="hover:text-white">Cookies</a>
+              </div>
             </div>
           </div>
         </div>

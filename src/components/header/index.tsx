@@ -148,7 +148,7 @@ const Header: React.FC<HeaderProps> = ({ sticky = false }) => {
                   Discover timeless designs crafted with precision, made to elevate your style and confidence. Each bag blends elegance and functionality, designed to accompany you from everyday moments to life’s most memorable occasions
                 </p>
                 <div className="flex flex-wrap items-center gap-5">
-                  <button className="btn-primary">
+                  <button className="btn-primary px-5 py-2 md:px-10 md:py-3 text-sm md:text-base">
                     <span className="btn-primary__gradient" />
                     <span className="relative z-10">Contact Us</span>
                   </button>
