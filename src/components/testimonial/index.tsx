@@ -35,7 +35,21 @@ const Testimonial: React.FC = () => {
         </div>
         {/* Cards wrapper matched to menu width (1272px) */}
         <div className="mx-auto max-w-[1272px]">
-          <div className="grid grid-cols-2 gap-4 md:gap-8">
+          {/* Mobile carousel (single card, swipe) */}
+          <div
+            className="md:hidden -mx-4 px-4 overflow-x-auto flex gap-4 snap-x snap-mandatory scroll-smooth"
+            aria-label="Testimonial carousel"
+          >
+            {items.map((item) => (
+              <Card
+                key={item.id}
+                item={item}
+                className="snap-center shrink-0 w-full"
+              />
+            ))}
+          </div>
+          {/* Desktop / Tablet grid */}
+          <div className="hidden md:grid grid-cols-2 gap-4 md:gap-8">
             {items.map((item) => (
               <Card key={item.id} item={item} />
             ))}

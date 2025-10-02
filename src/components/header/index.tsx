@@ -131,14 +131,15 @@ const Header: React.FC<HeaderProps> = ({ sticky = false }) => {
             </div>
           </div>
           {/* Hero / extended panel area (mewarisi background dari panel) */}
-          <div className="relative px-4 sm:px-6 lg:px-10 xl:px-16 pt-8 md:pt-14 pb-28 md:pb-48 xl:pb-50">
-            <div className="grid gap-10 xl:gap-16 items-center min-h-[500px] md:min-h-[550px]">
+          <div className="relative px-4 sm:px-6 lg:px-10 xl:px-16 pt-6 md:pt-14 pb-16 md:pb-48 xl:pb-50">
+            {/* Mobile height shortened: reduced padding + lower min-height */}
+            <div className="grid gap-6 xl:gap-16 items-center min-h-[300px] md:min-h-[550px]">
               {/* Content area (visual panel removed; parent panel can receive a background image via inline style or utility) */}
               <div className="max-w-3xl">
                 <h1 className="heading-1 text-neutral-800 dark:text-white leading-[1.05] mb-8">
                   Stay Stylish with the Latest Bag Trends
                 </h1>
-                <p className="body-text text-neutral-700 dark:text-zinc-300 max-w-[640px] mb-10">
+                <p className="body-text text-neutral-700 dark:text-zinc-300 max-w-[640px] mb-10 hidden md:block">
                   Discover timeless designs crafted with precision, made to elevate your style and confidence. Each bag blends elegance and functionality, designed to accompany you from everyday moments to life’s most memorable occasions
                 </p>
                 <div className="flex flex-wrap items-center gap-5">
