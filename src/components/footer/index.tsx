@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../header/source/img1.png';
+import logoWhite from '../header/source/img2.png';
 import footerBg from './source/footer.png';
 
 interface FooterLink { label: string; href: string; }
@@ -71,11 +72,18 @@ const Footer: React.FC = () => {
           {/* Overlay aktif sesuai permintaan */}
           <div className="absolute inset-0 bg-black/15 dark:bg-black/20 pointer-events-none" aria-hidden />
           <div className="flex flex-col items-center gap-10 relative z-10">
-            <img
-              src={logo}
-              alt="Bellara Logo"
-              className="w-60 h-60 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-72 lg:h-72 object-contain opacity-100 transition-transform"
-            />
+            <span className="relative w-60 h-60 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-72 lg:h-72 flex items-center justify-center">
+              <img
+                src={logo}
+                alt="Bellara Logo"
+                className="w-full h-full object-contain opacity-100 transition-transform dark:hidden"
+              />
+              <img
+                src={logoWhite}
+                alt="Bellara Logo"
+                className="w-full h-full object-contain opacity-100 transition-transform hidden dark:block"
+              />
+            </span>
           </div>
         </div>
       </div>
@@ -86,7 +94,10 @@ const Footer: React.FC = () => {
           <div className="md:hidden">
             {/* Brand + short tagline */}
             <div className="flex items-center gap-4 mb-5">
-              <img src={logo} alt="Bellara" className="w-14 h-14 object-contain" />
+              {/* Always white logo in bottom footer (mobile) */}
+              <span className="relative w-14 h-14 flex items-center justify-center">
+                <img src={logoWhite} alt="Bellara" className="w-full h-full object-contain" />
+              </span>
               <p className="text-xs leading-snug text-white/75 max-w-[200px]">Curated bags & timeless accessories.</p>
             </div>
             <div className="divide-y divide-white/10 border-t border-b border-white/10 text-sm">
@@ -155,7 +166,10 @@ const Footer: React.FC = () => {
               {/* Brand + tagline */}
               <div className="col-span-4 lg:col-span-3 flex flex-col gap-6">
                 <div className="flex items-center gap-4">
-                  <img src={logo} alt="Bellara" className="w-16 h-16 object-contain" />
+                  {/* Always white logo in bottom footer (desktop) */}
+                  <span className="relative w-16 h-16 flex items-center justify-center">
+                    <img src={logoWhite} alt="Bellara" className="w-full h-full object-contain" />
+                  </span>
                   <p className="text-xs leading-snug text-white/75 max-w-[160px]">Curated bags & timeless accessories.</p>
                 </div>
                 {/* Shipping pill */}

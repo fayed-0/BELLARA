@@ -31,7 +31,7 @@ const Trending: React.FC = () => {
 
   return (
     <div className="w-full bg-white dark:bg-zinc-950 font-inter text-neutral-900 dark:text-white flex flex-col">
-      <div className="flex justify-center">
+  <div className="flex justify-center pt-10 md:pt-14">
         {/* Flow spacer ensures page height matches scaled content */}
         <div className="relative w-full flex justify-center" style={{ minHeight: scaledHeight }}>
           <div

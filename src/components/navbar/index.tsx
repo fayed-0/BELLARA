@@ -2,6 +2,7 @@ import React, { useId, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import ThemeToggle from '../header/ThemeToggle';
 import logo from '../header/source/img1.png';
+import logoWhite from '../header/source/img2.png';
 
 interface NavItem { label: string; to: string; }
 const navItems: NavItem[] = [
@@ -19,11 +20,15 @@ const Navbar: React.FC = () => {
 	const [open, setOpen] = useState(false);
 
 	return (
-		<div className="w-full font-inter sticky top-0 z-50 px-4 sm:px-6 lg:px-10 xl:px-20">
-			<div className="relative overflow-hidden rounded-b-[46px] rounded-t-none sm:rounded-[46px] backdrop-blur supports-[backdrop-filter]:bg-white/35 dark:supports-[backdrop-filter]:bg-zinc-900/35 bg-white/70 dark:bg-zinc-900/70 border border-t-0 sm:border border-white/60 dark:border-white/10 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.15)] flex items-center gap-6 px-6 xl:px-12 h-[72px]">
+		<div className="w-full font-inter mt-4 md:mt-6"> 
+			<div className="max-w-[1680px] mx-auto px-6 md:px-10 lg:px-14 xl:px-20 2xl:px-24">
+				<div className="relative overflow-hidden rounded-[46px] backdrop-blur supports-[backdrop-filter]:bg-white/90 dark:supports-[backdrop-filter]:bg-zinc-900/35 bg-white dark:bg-zinc-900/70 border border-neutral-200/70 dark:border-white/10 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.12)] flex items-center gap-6 px-6 xl:px-12 h-[72px] transition-colors">
 				{/* Logo */}
 				<Link to="/" className="flex items-center gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-800 dark:focus-visible:ring-white rounded-xl">
-					<img src={logo} alt="Bellara Logo" className="w-24 h-14 object-contain p-1 group-hover:scale-[1.02] transition" />
+					<span className="relative w-24 h-14 p-1 flex items-center justify-center">
+						<img src={logo} alt="Bellara Logo" className="w-full h-full object-contain group-hover:scale-[1.02] transition dark:hidden" />
+						<img src={logoWhite} alt="Bellara Logo" className="w-full h-full object-contain group-hover:scale-[1.02] transition hidden dark:block" />
+					</span>
 					<span className="sr-only">Bellara Home</span>
 				</Link>
         {/* Mobile hamburger */}
@@ -75,10 +80,10 @@ const Navbar: React.FC = () => {
 						</button>
 				</form>
 				<div className="hidden md:flex ml-3"><ThemeToggle /></div>
-			</div>
-			{/* Mobile dropdown panel */}
-			<div className={`lg:hidden transition-[max-height,opacity] duration-400 ease-out overflow-hidden ${open ? 'max-h-[420px] opacity-100' : 'max-h-0 opacity-0'} px-1`}> 
-				<div className="mt-3 pb-6 rounded-3xl border border-white/60 dark:border-white/10 bg-white/70 dark:bg-zinc-900/70 backdrop-blur px-5 pt-5 shadow-sm">
+				</div>
+				{/* Mobile dropdown panel (inside same width container) */}
+				<div className={`lg:hidden transition-[max-height,opacity] duration-400 ease-out overflow-hidden ${open ? 'max-h-[420px] opacity-100' : 'max-h-0 opacity-0'} px-1`}> 
+					<div className="mt-3 pb-6 rounded-3xl border border-neutral-200/70 dark:border-white/10 bg-white/90 dark:bg-zinc-900/70 backdrop-blur px-5 pt-5 shadow-sm">
 					<form onSubmit={(e)=>e.preventDefault()} className="relative mb-5">
 						<label htmlFor={`${searchId}-m`} className="sr-only">Search products</label>
 						<input
@@ -110,6 +115,7 @@ const Navbar: React.FC = () => {
 					<div className="mt-6 flex justify-between items-center">
 						<span className="text-xs tracking-wide text-neutral-600 dark:text-zinc-400">Theme</span>
 						<ThemeToggle />
+					</div>
 					</div>
 				</div>
 			</div>

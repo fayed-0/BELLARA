@@ -36,8 +36,8 @@ const Header: React.FC<HeaderProps> = ({ sticky = false }) => {
           <div className="absolute inset-0 bg-white/15 dark:bg-black/20 pointer-events-none" aria-hidden />
           <div className="relative px-4 sm:px-6 lg:px-10 xl:px-16 pt-4 md:pt-6 flex items-center gap-3">
                         <Link to="/" className="flex items-center gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-800 dark:focus-visible:ring-white rounded-xl">
-                          {/* Logo swap: default dark (brown/black) for light theme, white version for dark mode */}
-                          <picture className="relative w-24 sm:w-24 h-12 sm:h-14 p-1 flex items-center justify-center">
+                          {/* Logo swap: img1 for light, img2 (white) for dark */}
+                          <span className="relative w-24 sm:w-24 h-12 sm:h-14 p-1 flex items-center justify-center">
                             <img
                               className="w-full h-full object-contain group-hover:scale-[1.02] transition dark:hidden"
                               src={require('./source/img1.png')}
@@ -45,15 +45,14 @@ const Header: React.FC<HeaderProps> = ({ sticky = false }) => {
                               loading="lazy"
                               decoding="async"
                             />
-                            {/* White logo version (provide fallback styling if actual white asset missing) */}
                             <img
-                              className="w-full h-full object-contain group-hover:scale-[1.02] transition hidden dark:block invert contrast-100 brightness-200"
-                              src={require('./source/img1.png')}
+                              className="w-full h-full object-contain group-hover:scale-[1.02] transition hidden dark:block"
+                              src={require('./source/img2.png')}
                               alt="Bellara Logo"
                               loading="lazy"
                               decoding="async"
                             />
-                          </picture>
+                          </span>
                           <span className="sr-only">Bellara Home</span>
                         </Link>
             <nav className="hidden lg:flex items-center gap-6 xl:gap-12 ml-4" aria-label="Primary">
