@@ -16,7 +16,7 @@ const navLinks: FooterLink[] = [
 const social: { label: string; icon: JSX.Element; href: string }[] = [
   {
     label: 'Instagram',
-    href: '#',
+    href: 'https://www.instagram.com/bellara.local?igsh=enViOHY5cHg0dzA1&utm_source=qr',
     icon: (
       <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="3" y="3" width="18" height="18" rx="5" ry="5" />
@@ -27,7 +27,7 @@ const social: { label: string; icon: JSX.Element; href: string }[] = [
   },
   {
     label: 'TikTok',
-    href: '#',
+    href: 'https://www.tiktok.com/@bellara.local?_t=ZS-90EmdFTGbsm&_r=1',
     icon: (
       <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
         <path d="M13.5 2h3.1c.1 1.2.6 2.2 1.3 3 .8.9 1.8 1.4 3 1.5v3.2c-1.7-.1-3.3-.7-4.5-1.6v6.9a6.9 6.9 0 1 1-6.9-6.9c.3 0 .7 0 1 .1v3.4a3.5 3.5 0 1 0 2.4 3.3L13.5 2Z" />
@@ -36,7 +36,7 @@ const social: { label: string; icon: JSX.Element; href: string }[] = [
   },
   {
     label: 'Facebook',
-    href: '#',
+    href: 'https://www.facebook.com/share/17UHwvQoLG/?mibextid=wwXIfr',
     icon: (
       <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
         <path d="M13 22v-8h3l1-4h-4V7.5A1.5 1.5 0 0 1 14.5 6H17V2h-2.5A5.5 5.5 0 0 0 9 7.5V10H6v4h3v8h4Z" />
@@ -45,7 +45,7 @@ const social: { label: string; icon: JSX.Element; href: string }[] = [
   },
   {
     label: 'Gmail',
-    href: 'mailto:info@bellara.com',
+    href: 'mailto:bellara.local@gmail.com',
     icon: (
       <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="4" width="20" height="16" rx="2" ry="2" />
