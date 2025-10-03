@@ -11,7 +11,7 @@ import img555x500 from './source/555x500.png';
 
 const BASE_W = 1512;
 const BASE_H = 3644;
-const MIN_SCALE = 0.55; // prevent terlalu kecil di mobile sempit tanpa ubah struktur
+// Removed MIN_SCALE per user request: biarkan mengecil natural mengikuti lebar viewport
 
 const Trending: React.FC = () => {
   const [scale, setScale] = useState(1);
@@ -19,9 +19,9 @@ const Trending: React.FC = () => {
   useEffect(() => {
     const update = () => {
   const w = window.innerWidth;
-  // scale down when viewport < base width, clamp ke MIN_SCALE agar masih kebaca
+  // scale down natural; no min clamp (can go sangat kecil sesuai arahan)
   const raw = w / BASE_W;
-  const s = Math.min(Math.max(raw, MIN_SCALE), 1);
+  const s = Math.min(raw, 1);
   setScale(s);
     };
     update();
@@ -32,8 +32,12 @@ const Trending: React.FC = () => {
   const scaledHeight = BASE_H * scale; // used to reserve vertical space in flow
 
   return (
-    <div className="w-full bg-white dark:bg-zinc-950 font-inter text-neutral-900 dark:text-white flex flex-col">
-  <div className="flex justify-center pt-10 md:pt-14">
+  <div className="w-full bg-white dark:bg-zinc-950 font-inter text-neutral-900 dark:text-white flex flex-col overflow-x-hidden touch-pan-y">
+  {/* Mobile heading separate (hidden on md and up) */}
+  <div className="md:hidden px-6 pt-10">
+    <h1 className="text-3xl font-semibold leading-tight tracking-tight">The Art of Everyday Luxury</h1>
+  </div>
+  <div className="flex justify-center pt-6 md:pt-14">
         {/* Flow spacer ensures page height matches scaled content */}
         <div className="relative w-full flex justify-center" style={{ minHeight: scaledHeight }}>
           <div
@@ -47,7 +51,7 @@ const Trending: React.FC = () => {
             }}
           >
             <div className="w-[1512px] h-[3644px] relative bg-white dark:bg-zinc-950 overflow-hidden">
-              <h1 className="w-[834px] absolute left-[120px] top-[200px] md:top-[4px] text-3xl md:text-5xl font-semibold leading-tight tracking-tight pointer-events-auto">
+              <h1 className="w-[834px] absolute left-[120px] top-[180px] md:top-[4px] text-3xl md:text-5xl font-semibold leading-tight tracking-tight pointer-events-auto hidden md:block">
                 The Art of Everyday Luxury
               </h1>
               <div className="w-[1275px] h-[3427px] absolute left-[120px] top-[100px] md:top-[100px] overflow-visible transition-all">
