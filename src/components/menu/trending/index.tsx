@@ -11,16 +11,18 @@ import img555x500 from './source/555x500.png';
 
 const BASE_W = 1512;
 const BASE_H = 3644;
+const MIN_SCALE = 0.55; // prevent terlalu kecil di mobile sempit tanpa ubah struktur
 
 const Trending: React.FC = () => {
   const [scale, setScale] = useState(1);
 
   useEffect(() => {
     const update = () => {
-      const w = window.innerWidth;
-      // scale down when viewport < base width, never upscale beyond 1
-      const s = Math.min(w / BASE_W, 1);
-      setScale(s);
+  const w = window.innerWidth;
+  // scale down when viewport < base width, clamp ke MIN_SCALE agar masih kebaca
+  const raw = w / BASE_W;
+  const s = Math.min(Math.max(raw, MIN_SCALE), 1);
+  setScale(s);
     };
     update();
     window.addEventListener('resize', update);
@@ -50,19 +52,19 @@ const Trending: React.FC = () => {
               </h1>
               <div className="w-[1275px] h-[3427px] absolute left-[120px] top-[100px] md:top-[100px] overflow-visible transition-all">
                 <div className="w-[700px] h-[905px] absolute left-0 top-0 rounded overflow-hidden">
-                  <img src={img700x905} alt="Showcase 700x905" className="w-full h-full object-cover" draggable={false} />
+                  <img loading="lazy" src={img700x905} alt="Showcase 700x905" className="w-full h-full object-cover" draggable={false} />
                 </div>
                 <div className="w-[1275px] h-[1574px] absolute left-0 top-[926px] rounded overflow-hidden">
-                  <img src={img1275x1574} alt="Feature 1275x1574" className="w-full h-full object-cover" draggable={false} />
+                  <img loading="lazy" src={img1275x1574} alt="Feature 1275x1574" className="w-full h-full object-cover" draggable={false} />
                 </div>
                 <div className="w-[1275px] h-[850px] absolute left-0 top-[2520px] rounded overflow-hidden">
-                  <img src={img1275x850} alt="Highlight 1275x850" className="w-full h-full object-cover" draggable={false} />
+                  <img loading="lazy" src={img1275x850} alt="Highlight 1275x850" className="w-full h-full object-cover" draggable={false} />
                 </div>
                 <div className="w-[554px] h-[380px] absolute left-[721px] top-[520px] rounded overflow-hidden">
-                  <img src={img554x380} alt="Detail 554x380" className="w-full h-full object-cover" draggable={false} />
+                  <img loading="lazy" src={img554x380} alt="Detail 554x380" className="w-full h-full object-cover" draggable={false} />
                 </div>
                 <div className="w-[555px] h-[500px] absolute left-[720px] top-0 rounded overflow-hidden">
-                  <img src={img555x500} alt="Detail 555x500" className="w-full h-full object-cover" draggable={false} />
+                  <img loading="lazy" src={img555x500} alt="Detail 555x500" className="w-full h-full object-cover" draggable={false} />
                 </div>
               </div>
             </div>
