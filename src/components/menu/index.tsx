@@ -34,9 +34,9 @@ const Menu: React.FC = () => {
             className="col-span-7 md:col-span-7"
             onClick={() => navigate('/collection')}
           />
-          <Card {...cards[1]} className="col-span-5 md:col-span-5" />
+          <Card {...cards[1]} className="col-span-5 md:col-span-5" onClick={() => navigate('/trending')} />
           <Card {...cards[2]} className="col-span-5 md:col-span-5" onClick={() => navigate('/accessories')} />
-          <Card {...cards[3]} className="col-span-7 md:col-span-7" />
+          <Card {...cards[3]} className="col-span-7 md:col-span-7" onClick={() => navigate('/partnership')} />
         </div>
       </div>
     </section>
@@ -70,7 +70,6 @@ const Card: React.FC<CardProps> = ({ title, desc, className = '', onClick }) => 
               backgroundImage: `url(${bg})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
             }}
             aria-hidden
           />

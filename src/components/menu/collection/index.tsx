@@ -158,8 +158,8 @@ const Collection: React.FC = () => {
 	return (
     <div className="font-inter flex flex-col min-h-screen bg-white dark:bg-zinc-950 transition-colors">
       <main className="flex-1">
-				<section id="collection" className="max-w-[1512px] mx-auto px-6 md:px-12 pt-10 md:pt-14 pb-16">
-					<h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-black dark:text-white mb-10 md:mb-14">Lorem ipsum dolor sit amet.</h1>
+        <section id="collection" className="max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[120px] pt-10 md:pt-14 pb-16">
+					<h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-black dark:text-white mb-10 md:mb-14">Our Collections</h1>
           <div className="grid gap-10 md:gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {CARDS.map(card => (
               <CarouselCard key={card.id} title={card.title} price={card.price} />

@@ -6,9 +6,9 @@ import logo from '../header/source/img1.png';
 interface NavItem { label: string; to: string; }
 const navItems: NavItem[] = [
 	{ label: 'Collections', to: '/collection' },
-	{ label: 'Trending', to: '#' },
+	{ label: 'Trending', to: '/trending' },
 	{ label: 'Accessories', to: '/accessories' },
-	{ label: 'Partnership', to: '#' },
+	{ label: 'Partnership', to: '/partnership' },
 ];
 
 // Transparent rounded panel navbar for reuse on collection page.

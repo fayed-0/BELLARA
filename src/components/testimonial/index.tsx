@@ -9,20 +9,20 @@ const items: TestItem[] = [
     id: 1,
     name: 'Ari K.',
     rating: 5,
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus ipsum in eros vestibulum, nec tincidunt elit cursus.',
+    text: 'The quality exceeded my expectations. The leather feels soft yet durable, and the design is both chic and practical. I’ve been using it daily, and I always get compliments on how elegant it looks.',
     img: testi1
   },
   {
     id: 2,
     name: 'Dina L.',
     rating: 4,
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus ipsum in eros vestibulum, nec tincidunt elit cursus.',
+    text: 'Stylish, versatile, and lightweight this bag goes perfectly with my casual and formal outfits. I love how it carries all my essentials without feeling bulky. Truly worth the investment.',
     img: testi2
   }
 ];
 
-const HEADING = 'Lorem ipsum dolor sit amet.';
-const SUB = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus ipsum in eros vestibulum, nec tincidunt elit cursus.';
+const HEADING = 'What Our Customers Say';
+const SUB = 'Real experiences from our customers who’ve found style, comfort, and confidence in every bag.';
 
 const Testimonial: React.FC = () => {
   const { carouselRef, handleScroll, activeIndex, scrollToIndex, showHint } = useCarouselProgress();

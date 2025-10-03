@@ -12,7 +12,8 @@ const AppLayout: React.FC = () => {
       <ScrollToTop />
       {!isHome && <Navbar />}
       <div className="flex-1">
-        <Outlet />
+        {/* Key Outlet by pathname so each page remounts fresh (state reset) */}
+        <Outlet key={location.pathname} />
       </div>
     </div>
   );

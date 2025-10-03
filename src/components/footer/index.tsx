@@ -7,9 +7,9 @@ interface FooterLink { label: string; href: string; }
 
 const navLinks: FooterLink[] = [
   { label: 'Collections', href: '/collection' },
-  { label: 'Tranding', href: '#' },
+  { label: 'Tranding', href: '/trending' },
   { label: 'Accessories', href: '/accessories' },
-  { label: 'Partnership', href: '#' },
+  { label: 'Partnership', href: '/partnership' },
 ];
 
 const social: { label: string; icon: JSX.Element; href: string }[] = [
