@@ -95,7 +95,7 @@ const Footer: React.FC = () => {
             {/* Brand + short tagline */}
             <div className="flex items-center gap-4 mb-5">
               {/* Always white logo in bottom footer (mobile) */}
-              <span className="relative w-14 h-14 flex items-center justify-center">
+              <span className="relative w-20 h-20 flex items-center justify-center">
                 <img src={logoWhite} alt="Bellara" className="w-full h-full object-contain" />
               </span>
               <p className="text-xs leading-snug text-white/75 max-w-[200px]">Curated bags & timeless accessories.</p>
@@ -152,7 +152,7 @@ const Footer: React.FC = () => {
             </button>
             {/* Copyright condensed */}
             <div className="mt-6 flex flex-col items-center gap-2 text-center">
-              <p className="text-[11px] tracking-wide text-white/55">&copy; {new Date().getFullYear()} Bellara</p>
+              <p className="text-[11px] tracking-wide text-white/55">&copy; BELLARA {new Date().getFullYear()}. All rights reserved.</p>
               <div className="flex gap-4 text-[10px] text-white/55">
                 <a href="#" className="hover:text-white">Privacy</a>
                 <a href="#" className="hover:text-white">Terms</a>
@@ -167,7 +167,7 @@ const Footer: React.FC = () => {
               <div className="col-span-4 lg:col-span-3 flex flex-col gap-6">
                 <div className="flex items-center gap-4">
                   {/* Always white logo in bottom footer (desktop) */}
-                  <span className="relative w-16 h-16 flex items-center justify-center">
+                  <span className="relative w-24 h-24 flex items-center justify-center">
                     <img src={logoWhite} alt="Bellara" className="w-full h-full object-contain" />
                   </span>
                   <p className="text-xs leading-snug text-white/75 max-w-[160px]">Curated bags & timeless accessories.</p>
@@ -225,7 +225,7 @@ const Footer: React.FC = () => {
             </div>
             {/* Divider + legal */}
             <div className="mt-14 pt-6 border-t border-white/10 text-[11px] text-white/55 flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
-              <p className="tracking-wide">&copy; {new Date().getFullYear()} Bellara</p>
+              <p className="tracking-wide">&copy; BELLARA {new Date().getFullYear()}. All rights reserved.</p>
               <div className="flex gap-6">
                 <a href="#" className="hover:text-white">Privacy</a>
                 <a href="#" className="hover:text-white">Terms</a>

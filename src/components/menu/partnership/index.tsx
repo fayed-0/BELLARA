@@ -13,7 +13,7 @@ const FAQS: QA[] = [
 	{ q: 'How can I register as an official partner?', a: 'The registration process is simple and straightforward. You just need to contact our team via WhatsApp or official email. Once you get in touch, we will provide you with complete details about the partnership requirements, our latest product catalog, and special partner pricing. After your data and order are confirmed, you can make your first purchase at partnership rates and officially become one of our valued partners. From there, you will have full access to discounts, product updates, and promotional support.' },
 ];
 
-const AccordionItem: React.FC<QA & { index: number; open: boolean; onToggle: () => void }> = ({ q, a, open, onToggle, index }) => {
+const AccordionItem: React.FC<QA & { open: boolean; onToggle: () => void }> = ({ q, a, open, onToggle }) => {
 	return (
 		<div className="border-b border-neutral-200 dark:border-zinc-700">
 			<button
@@ -39,10 +39,9 @@ const Partnership: React.FC = () => {
 		return (
 			<div className="font-inter flex flex-col min-h-screen bg-white dark:bg-zinc-950 transition-colors">
 				<main className="flex-1">
-					<section className="max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[120px] pt-14 md:pt-20 pb-24">
+					<section className="max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[120px] pt-10 md:pt-14 pb-24">
 						<div className="mb-14">
 							<h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-neutral-900 dark:text-white mb-5">Partnership FAQ</h1>
-							<p className="text-neutral-600 dark:text-zinc-400 max-w-2xl text-sm md:text-base leading-relaxed">Discover everything you need to know about our wholesale & partnership program.</p>
 						</div>
 						<div className="grid md:grid-cols-[420px_minmax(0,1fr)] gap-10 md:gap-14 items-start">
 							<div className="relative w-full overflow-hidden rounded-3xl h-[460px] md:h-[600px] bg-neutral-200 dark:bg-zinc-800">
@@ -59,7 +58,6 @@ const Partnership: React.FC = () => {
 								{FAQS.map((item, i) => (
 									<AccordionItem
 										key={item.q}
-										index={i}
 										q={item.q}
 										a={item.a}
 										open={openIndex === i}

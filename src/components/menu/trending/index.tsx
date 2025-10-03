@@ -45,10 +45,10 @@ const Trending: React.FC = () => {
             }}
           >
             <div className="w-[1512px] h-[3644px] relative bg-white dark:bg-zinc-950 overflow-hidden">
-              <h1 className="w-[834px] absolute left-[120px] top-[91px] text-3xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight pointer-events-auto">
+              <h1 className="w-[834px] absolute left-[120px] top-[200px] md:top-[4px] text-3xl md:text-5xl font-semibold leading-tight tracking-tight pointer-events-auto">
                 The Art of Everyday Luxury
               </h1>
-              <div className="w-[1275px] h-[3427px] absolute left-[120px] top-[208px] overflow-visible">
+              <div className="w-[1275px] h-[3427px] absolute left-[120px] top-[100px] md:top-[100px] overflow-visible transition-all">
                 <div className="w-[700px] h-[905px] absolute left-0 top-0 rounded overflow-hidden">
                   <img src={img700x905} alt="Showcase 700x905" className="w-full h-full object-cover" draggable={false} />
                 </div>

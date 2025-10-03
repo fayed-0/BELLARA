@@ -7,14 +7,14 @@ interface TestItem { id: number; name: string; text: string; rating: number; img
 const items: TestItem[] = [
   {
     id: 1,
-    name: 'Ari K.',
+    name: 'Marvela Maeve Solis.',
     rating: 5,
     text: 'The quality exceeded my expectations. The leather feels soft yet durable, and the design is both chic and practical. I’ve been using it daily, and I always get compliments on how elegant it looks.',
     img: testi1
   },
   {
     id: 2,
-    name: 'Dina L.',
+    name: 'Amara Elara Noelle.',
     rating: 4,
     text: 'Stylish, versatile, and lightweight this bag goes perfectly with my casual and formal outfits. I love how it carries all my essentials without feeling bulky. Truly worth the investment.',
     img: testi2
