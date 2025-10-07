@@ -1,28 +1,48 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Footer from '../../footer';
+// Luna assets (B1 set)
 import imgBlack from './source/b1/b1-black.png';
 import imgBrown from './source/b1/b1-brown.png';
 import imgCream from './source/b1/b1-cream.png';
+// Phoebe assets
+import phoebeBlack from './source/phoebe/hitam.png';
+import phoebeBrown from './source/phoebe/coklat.png';
+import phoebeWhite from './source/phoebe/putih.png';
 import cartIcon from './source/cart.svg';
 
 // Data for all cards (each card reuses the image variants carousel)
 interface CardData { id: number; title: string; price: number }
-  const CARDS: CardData[] = Array.from({ length: 6 }).map((_, i) => ({ id: i + 1, title: 'B1 Series', price: 75000 }));
+// Top row (first 3): Luna Series, Bottom row (last 3): Phoebe Series
+const CARDS: CardData[] = [
+  { id: 1, title: 'Luna Series', price: 75000 },
+  { id: 2, title: 'Luna Series', price: 75000 },
+  { id: 3, title: 'Luna Series', price: 75000 },
+  { id: 4, title: 'Phoebe Series', price: 75000 },
+  { id: 5, title: 'Phoebe Series', price: 75000 },
+  { id: 6, title: 'Phoebe Series', price: 75000 },
+];
   const formatIDR = (value: number) => new Intl.NumberFormat('id-ID').format(value);
 
 interface SliderImage { src: string; alt: string }
-const SLIDER_IMAGES: SliderImage[] = [
-  { src: imgBlack, alt: 'Bag black variant' },
-  { src: imgBrown, alt: 'Bag brown variant' },
-  { src: imgCream, alt: 'Bag cream variant' },
+// Luna order (default): black, brown, white(cream)
+const LUNA_IMAGES: SliderImage[] = [
+  { src: imgBlack, alt: 'Luna bag - black' },
+  { src: imgBrown, alt: 'Luna bag - brown' },
+  { src: imgCream, alt: 'Luna bag - white' },
+];
+// Phoebe order requested: black, brown, white
+const PHOEBE_IMAGES: SliderImage[] = [
+  { src: phoebeBlack, alt: 'Phoebe bag - black' },
+  { src: phoebeBrown, alt: 'Phoebe bag - brown' },
+  { src: phoebeWhite, alt: 'Phoebe bag - white' },
 ];
 
-interface CarouselCardProps { title: string; price: number; }
-const CarouselCard: React.FC<CarouselCardProps> = ({ title, price }) => {
+interface CarouselCardProps { title: string; price: number; images: SliderImage[]; initialIndex?: number }
+const CarouselCard: React.FC<CarouselCardProps> = ({ title, price, images, initialIndex = 0 }) => {
   // For seamless infinite: create virtual slides with clones at start & end
-  const [position, setPosition] = useState(1); // index in extended track (1..length)
+  const [position, setPosition] = useState(initialIndex + 1); // index in extended track (1..length)
   const [animating, setAnimating] = useState(false); // whether CSS transition is active
-  const length = SLIDER_IMAGES.length;
+  const length = images.length;
   const logicalIndex = (position - 1 + length) % length; // for indicator
   const trackRef = useRef<HTMLDivElement | null>(null);
   const touchStart = useRef<number | null>(null);
@@ -121,16 +141,16 @@ const CarouselCard: React.FC<CarouselCardProps> = ({ title, price }) => {
         >
           {/* Leading clone (last real) */}
           <div className="min-w-full h-full flex items-center justify-center p-6">
-            <img src={SLIDER_IMAGES[length - 1].src} alt={SLIDER_IMAGES[length - 1].alt} className="max-h-full max-w-full object-contain select-none pointer-events-none" />
+            <img src={images[length - 1].src} alt={images[length - 1].alt} className="max-h-full max-w-full object-contain select-none pointer-events-none" />
           </div>
-          {SLIDER_IMAGES.map(img => (
+          {images.map(img => (
             <div key={img.src} className="min-w-full h-full flex items-center justify-center p-6">
               <img src={img.src} alt={img.alt} className="max-h-full max-w-full object-contain select-none pointer-events-none" />
             </div>
           ))}
           {/* Trailing clone (first real) */}
           <div className="min-w-full h-full flex items-center justify-center p-6">
-            <img src={SLIDER_IMAGES[0].src} alt={SLIDER_IMAGES[0].alt} className="max-h-full max-w-full object-contain select-none pointer-events-none" />
+            <img src={images[0].src} alt={images[0].alt} className="max-h-full max-w-full object-contain select-none pointer-events-none" />
           </div>
         </div>
         {/* Arrows (desktop/tablet) */}
@@ -145,7 +165,7 @@ const CarouselCard: React.FC<CarouselCardProps> = ({ title, price }) => {
           <div className="relative h-[2px] bg-black/30 rounded overflow-hidden">
             <span
               className="absolute top-0 h-full bg-black rounded transition-all duration-400 ease-out"
-              style={{ width: `${100 / SLIDER_IMAGES.length}%`, left: `${(100 / SLIDER_IMAGES.length) * logicalIndex}%` }}
+              style={{ width: `${100 / images.length}%`, left: `${(100 / images.length) * logicalIndex}%` }}
             />
           </div>
         </div>
@@ -161,9 +181,15 @@ const Collection: React.FC = () => {
         <section id="collection" className="max-w-[1512px] mx-auto px-6 md:px-12 lg:px-[120px] pt-10 md:pt-14 pb-16">
 					<h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-black dark:text-white mb-10 md:mb-14">Our Collections</h1>
           <div className="grid gap-10 md:gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {CARDS.map(card => (
-              <CarouselCard key={card.id} title={card.title} price={card.price} />
-            ))}
+            {CARDS.map(card => {
+              const isPhoebe = card.title === 'Phoebe Series';
+              const images = isPhoebe ? PHOEBE_IMAGES : LUNA_IMAGES;
+              // 2nd column of Phoebe row is card id 5 (ids 4-6 are Phoebe)
+              const initialIndex = isPhoebe && card.id === 5 ? 2 : 0; // start with white for column 2 Phoebe
+              return (
+                <CarouselCard key={card.id} title={card.title} price={card.price} images={images} initialIndex={initialIndex} />
+              );
+            })}
           </div>
 				</section>
 			</main>
